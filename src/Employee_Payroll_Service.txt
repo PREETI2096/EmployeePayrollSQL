@@ -115,3 +115,21 @@ mysql> select * from employee_payroll;
 |  5 | Ravikiran | 72000.000 | 2018-05-22 |
 +----+-----------+-----------+------------+
 5 rows in set (0.00 sec)
+select Salary from employee_payroll where Name = "Smriti";
++-----------+
+| Salary    |
++-----------+
+| 52300.000 |
++-----------+
+1 row in set (0.00 sec)
+ select * from employee_payroll where Start_Date between cast("2018-01-01" as DATE) and DATE(now()) order by Start_Date;
++----+-----------+-----------+------------+
+| Id | Name      | Salary    | Start_Date |
++----+-----------+-----------+------------+
+|  5 | Ravikiran | 72000.000 | 2018-05-22 |
+|  1 | Preeti    | 45500.000 | 2021-04-12 |
+|  4 | Usha      | 68780.000 | 2022-06-27 |
+|  2 | Sanjana   | 34000.000 | 2022-09-08 |
+|  3 | Smriti    | 52300.000 | 2023-01-28 |
++----+-----------+-----------+------------+
+5 rows in set (0.00 sec)
