@@ -133,3 +133,46 @@ select Salary from employee_payroll where Name = "Smriti";
 |  3 | Smriti    | 52300.000 | 2023-01-28 |
 +----+-----------+-----------+------------+
 5 rows in set (0.00 sec)
+ alter table employee_payroll add Gender varchar(10);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee_payroll;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| Id         | int          | NO   | PRI | NULL    | auto_increment |
+| Name       | varchar(25)  | YES  |     | NULL    |                |
+| Salary     | double(15,3) | YES  |     | NULL    |                |
+| Start_Date | date         | YES  |     | NULL    |                |
+| Gender     | varchar(10)  | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> select * from employee_payroll;
++----+-----------+-----------+------------+--------+
+| Id | Name      | Salary    | Start_Date | Gender |
++----+-----------+-----------+------------+--------+
+|  1 | Preeti    | 45500.000 | 2021-04-12 | NULL   |
+|  2 | Sanjana   | 34000.000 | 2022-09-08 | NULL   |
+|  3 | Smriti    | 52300.000 | 2023-01-28 | NULL   |
+|  4 | Usha      | 68780.000 | 2022-06-27 | NULL   |
+|  5 | Ravikiran | 72000.000 | 2018-05-22 | NULL   |
++----+-----------+-----------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> update employee_payroll set Gender ="M" where Name = "Ravikiran";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+-----------+-----------+------------+--------+
+| Id | Name      | Salary    | Start_Date | Gender |
++----+-----------+-----------+------------+--------+
+|  1 | Preeti    | 45500.000 | 2021-04-12 | NULL   |
+|  2 | Sanjana   | 34000.000 | 2022-09-08 | NULL   |
+|  3 | Smriti    | 52300.000 | 2023-01-28 | NULL   |
+|  4 | Usha      | 68780.000 | 2022-06-27 | NULL   |
+|  5 | Ravikiran | 72000.000 | 2018-05-22 | M      |
++----+-----------+-----------+------------+--------+
+5 rows in set (0.00 sec)
