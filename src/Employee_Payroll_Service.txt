@@ -176,3 +176,60 @@ mysql> select * from employee_payroll;
 |  5 | Ravikiran | 72000.000 | 2018-05-22 | M      |
 +----+-----------+-----------+------------+--------+
 5 rows in set (0.00 sec)
+ select sum(Salary) from employee_payroll;
++-------------+
+| sum(Salary) |
++-------------+
+|  340080.000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select Avg(Salary) from employee_payroll;
++---------------+
+| Avg(Salary)   |
++---------------+
+| 56680.0000000 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select min(Salary) from employee_payroll;
++-------------+
+| min(Salary) |
++-------------+
+|   34000.000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(Salary) from employee_payroll;
++-------------+
+| max(Salary) |
++-------------+
+|   72000.000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select Gender,COUNT(Salary) from employee_payroll group by Gender;
++--------+---------------+
+| Gender | COUNT(Salary) |
++--------+---------------+
+| F      |             4 |
+| M      |             2 |
++--------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select sum(Salary) from employee_payroll where Gender = "F" group by Gender;
++-------------+
+| sum(Salary) |
++-------------+
+|  200580.000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(Salary) from employee_payroll where Gender = "M" group by Gender;
++-------------+
+| sum(Salary) |
++-------------+
+|  139500.000 |
++-------------+
+1 row in set (0.00 sec)
+
