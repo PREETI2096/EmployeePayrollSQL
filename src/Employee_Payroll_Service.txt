@@ -42,3 +42,62 @@ mysql> desc employee_payroll;
 | Start_Date | date        | YES  |     | NULL    |                |
 +------------+-------------+------+-----+---------+----------------+
 4 rows in set (0.01 sec)
+mysql> desc employee_payroll;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| Id         | int          | NO   | PRI | NULL    | auto_increment |
+| Name       | varchar(25)  | YES  |     | NULL    |                |
+| Salary     | double(15,3) | YES  |     | NULL    |                |
+| Start_Date | date         | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> insert into employee_payroll(Name , Salary , Start_Date ) values ("Preeti", 45500.00,"2021-04-12");
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into employee_payroll(Name , Salary , Start_Date ) values ("Preeti", 45500.00,"2022-09-08");
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into employee_payroll(Name , Salary , Start_Date ) values ("Smriti",52300.00,"2023-01-28");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee_payroll(Name , Salary , Start_Date ) values ("Usha", 68780.00,"2022-06-27");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc employee_payroll;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| Id         | int          | NO   | PRI | NULL    | auto_increment |
+| Name       | varchar(25)  | YES  |     | NULL    |                |
+| Salary     | double(15,3) | YES  |     | NULL    |                |
+| Start_Date | date         | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee_payroll;
++----+--------+-----------+------------+
+| Id | Name   | Salary    | Start_Date |
++----+--------+-----------+------------+
+|  1 | Preeti | 45500.000 | 2021-04-12 |
+|  2 | Preeti | 45500.000 | 2022-09-08 |
+|  3 | Smriti | 52300.000 | 2023-01-28 |
+|  4 | Usha   | 68780.000 | 2022-06-27 |
++----+--------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee_payroll set Name = "Sanjana", Salary =34000.00 where Id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+-----------+------------+
+| Id | Name    | Salary    | Start_Date |
++----+---------+-----------+------------+
+|  1 | Preeti  | 45500.000 | 2021-04-12 |
+|  2 | Sanjana | 34000.000 | 2022-09-08 |
+|  3 | Smriti  | 52300.000 | 2023-01-28 |
+|  4 | Usha    | 68780.000 | 2022-06-27 |
++----+---------+-----------+------------+
+4 rows in set (0.00 sec)
