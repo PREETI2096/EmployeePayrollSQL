@@ -1,34 +1,52 @@
- update employee_payroll set Department = "Sales" where Name = "Preeti";
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> update employee_payroll set Name = "Preeti" where Id = 6;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
+ create table employee_department(Emp_Id int not null auto_increment, Dept_Id int , Primary key(Emp_Id));
+Query OK, 0 rows affected (0.03 sec)
 
-mysql> update employee_payroll set Department = "Marketing" where Name = "Preeti";
-Query OK, 2 rows affected (0.01 sec)
-Rows matched: 2  Changed: 2  Warnings: 0
+mysql> desc employee_department;
++---------+------+------+-----+---------+----------------+
+| Field   | Type | Null | Key | Default | Extra          |
++---------+------+------+-----+---------+----------------+
+| Emp_Id  | int  | NO   | PRI | NULL    | auto_increment |
+| Dept_Id | int  | YES  |     | NULL    |                |
++---------+------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
 
-mysql> update employee_payroll set Department = "Sales" where Id = 1;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select Sum(Salary) from employee_payroll;
++-------------+
+| Sum(Salary) |
++-------------+
+|  594580.000 |
++-------------+
+1 row in set (0.00 sec)
 
-mysql> select Name ,Department from employee_payroll where Name = "Preeti";
-+--------+------------+
-| Name   | Department |
-+--------+------------+
-| Preeti | Sales      |
-| Preeti | Marketing  |
-+--------+------------+
-2 rows in set (0.00 sec)
+mysql> select min(Salary) from employee_payroll;
++-------------+
+| min(Salary) |
++-------------+
+|   34000.000 |
++-------------+
+1 row in set (0.00 sec)
 
-mysql> select * from employee_payroll where Name = "Preeti";
-+----+--------+------------+------------+--------+--------------+---------+------------+-----------+------------+-------------+------------+---------+
-| Id | Name   | Salary     | Start_Date | Gender | Phone_Number | Address | Department | Basic_Pay | Deductions | Taxable_Pay | Income_Tax | Net_Pay |
-+----+--------+------------+------------+--------+--------------+---------+------------+-----------+------------+-------------+------------+---------+
-|  1 | Preeti | 300000.000 | 2021-04-12 | F      | NULL         | India   | Sales      | NULL      | NULL       | NULL        | NULL       | NULL    |
-|  6 | Preeti |  67500.000 | 2019-11-12 | M      | NULL         | India   | Marketing  | NULL      | NULL       | NULL        | NULL       | NULL    |
-+----+--------+------------+------------+--------+--------------+---------+------------+-----------+------------+-------------+------------+---------+
-2 rows in set (0.00 sec)
+mysql> select max(Salary) from employee_payroll;
++-------------+
+| max(Salary) |
++-------------+
+|  300000.000 |
++-------------+
+1 row in set (0.00 sec)
 
+mysql> select avg(Salary) from employee_payroll;
++---------------+
+| avg(Salary)   |
++---------------+
+| 99096.6666667 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select count(Id) from employee_payroll;
++-----------+
+| count(Id) |
++-----------+
+|         6 |
++-----------+
+1 row in set (0.01 sec)
