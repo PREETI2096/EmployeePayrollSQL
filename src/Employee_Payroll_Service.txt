@@ -1,259 +1,33 @@
- create database payroll_service;
-Query OK, 1 row affected (0.02 sec)
 
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| payroll_service    |
-| performance_schema |
-| sys                |
-+--------------------+
-5 rows in set (0.01 sec)
-
-mysql> use payroll_service;
-Database changed
- create table employee_payroll(
-    ->  Id int not null auto_increment,
-    ->  Name varchar(25),
-    ->  Salary double(6,2),
-    ->  Start_Date DATE,
-    ->  primary key (Id)
-    -> );
-Query OK, 0 rows affected, 1 warning (0.03 sec)
-
-mysql> show tables;
-+---------------------------+
-| Tables_in_payroll_service |
-+---------------------------+
-| employee_payroll          |
-+---------------------------+
-1 row in set (0.00 sec)
-
-mysql> desc employee_payroll;
-+------------+-------------+------+-----+---------+----------------+
-| Field      | Type        | Null | Key | Default | Extra          |
-+------------+-------------+------+-----+---------+----------------+
-| Id         | int         | NO   | PRI | NULL    | auto_increment |
-| Name       | varchar(25) | YES  |     | NULL    |                |
-| Salary     | double(6,2) | YES  |     | NULL    |                |
-| Start_Date | date        | YES  |     | NULL    |                |
-+------------+-------------+------+-----+---------+----------------+
-4 rows in set (0.01 sec)
-mysql> desc employee_payroll;
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| Id         | int          | NO   | PRI | NULL    | auto_increment |
-| Name       | varchar(25)  | YES  |     | NULL    |                |
-| Salary     | double(15,3) | YES  |     | NULL    |                |
-| Start_Date | date         | YES  |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
-4 rows in set (0.01 sec)
-
-mysql> insert into employee_payroll(Name , Salary , Start_Date ) values ("Preeti", 45500.00,"2021-04-12");
-Query OK, 1 row affected (0.01 sec)
-
-mysql>  insert into employee_payroll(Name , Salary , Start_Date ) values ("Preeti", 45500.00,"2022-09-08");
-Query OK, 1 row affected (0.01 sec)
-
-mysql>  insert into employee_payroll(Name , Salary , Start_Date ) values ("Smriti",52300.00,"2023-01-28");
-Query OK, 1 row affected (0.01 sec)
-
-mysql> insert into employee_payroll(Name , Salary , Start_Date ) values ("Usha", 68780.00,"2022-06-27");
-Query OK, 1 row affected (0.01 sec)
-
-mysql> desc employee_payroll;
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| Id         | int          | NO   | PRI | NULL    | auto_increment |
-| Name       | varchar(25)  | YES  |     | NULL    |                |
-| Salary     | double(15,3) | YES  |     | NULL    |                |
-| Start_Date | date         | YES  |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
-4 rows in set (0.00 sec)
-
-mysql> select * from employee_payroll;
-+----+--------+-----------+------------+
-| Id | Name   | Salary    | Start_Date |
-+----+--------+-----------+------------+
-|  1 | Preeti | 45500.000 | 2021-04-12 |
-|  2 | Preeti | 45500.000 | 2022-09-08 |
-|  3 | Smriti | 52300.000 | 2023-01-28 |
-|  4 | Usha   | 68780.000 | 2022-06-27 |
-+----+--------+-----------+------------+
-4 rows in set (0.00 sec)
-
-mysql> update employee_payroll set Name = "Sanjana", Salary =34000.00 where Id=2;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> select * from employee_payroll;
-+----+---------+-----------+------------+
-| Id | Name    | Salary    | Start_Date |
-+----+---------+-----------+------------+
-|  1 | Preeti  | 45500.000 | 2021-04-12 |
-|  2 | Sanjana | 34000.000 | 2022-09-08 |
-|  3 | Smriti  | 52300.000 | 2023-01-28 |
-|  4 | Usha    | 68780.000 | 2022-06-27 |
-+----+---------+-----------+------------+
-4 rows in set (0.00 sec)
- insert into employee_payroll(Name , Salary , Start_Date ) values ("Ravikiran", 72000.00,"2018-05-22");
-Query OK, 1 row affected (0.01 sec)
-
-mysql> select * from employee_payroll;
-+----+-----------+-----------+------------+
-| Id | Name      | Salary    | Start_Date |
-+----+-----------+-----------+------------+
-|  1 | Preeti    | 45500.000 | 2021-04-12 |
-|  2 | Sanjana   | 34000.000 | 2022-09-08 |
-|  3 | Smriti    | 52300.000 | 2023-01-28 |
-|  4 | Usha      | 68780.000 | 2022-06-27 |
-|  5 | Ravikiran | 72000.000 | 2018-05-22 |
-+----+-----------+-----------+------------+
-5 rows in set (0.00 sec)
-select Salary from employee_payroll where Name = "Smriti";
-+-----------+
-| Salary    |
-+-----------+
-| 52300.000 |
-+-----------+
-1 row in set (0.00 sec)
- select * from employee_payroll where Start_Date between cast("2018-01-01" as DATE) and DATE(now()) order by Start_Date;
-+----+-----------+-----------+------------+
-| Id | Name      | Salary    | Start_Date |
-+----+-----------+-----------+------------+
-|  5 | Ravikiran | 72000.000 | 2018-05-22 |
-|  1 | Preeti    | 45500.000 | 2021-04-12 |
-|  4 | Usha      | 68780.000 | 2022-06-27 |
-|  2 | Sanjana   | 34000.000 | 2022-09-08 |
-|  3 | Smriti    | 52300.000 | 2023-01-28 |
-+----+-----------+-----------+------------+
-5 rows in set (0.00 sec)
- alter table employee_payroll add Gender varchar(10);
-Query OK, 0 rows affected (0.03 sec)
+ alter table employee_payroll add column Basic_Pay long;
+Query OK, 0 rows affected (0.01 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> desc employee_payroll;
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| Id         | int          | NO   | PRI | NULL    | auto_increment |
-| Name       | varchar(25)  | YES  |     | NULL    |                |
-| Salary     | double(15,3) | YES  |     | NULL    |                |
-| Start_Date | date         | YES  |     | NULL    |                |
-| Gender     | varchar(10)  | YES  |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
-5 rows in set (0.01 sec)
-
-mysql> select * from employee_payroll;
-+----+-----------+-----------+------------+--------+
-| Id | Name      | Salary    | Start_Date | Gender |
-+----+-----------+-----------+------------+--------+
-|  1 | Preeti    | 45500.000 | 2021-04-12 | NULL   |
-|  2 | Sanjana   | 34000.000 | 2022-09-08 | NULL   |
-|  3 | Smriti    | 52300.000 | 2023-01-28 | NULL   |
-|  4 | Usha      | 68780.000 | 2022-06-27 | NULL   |
-|  5 | Ravikiran | 72000.000 | 2018-05-22 | NULL   |
-+----+-----------+-----------+------------+--------+
-5 rows in set (0.00 sec)
-
-mysql> update employee_payroll set Gender ="M" where Name = "Ravikiran";
-Query OK, 1 row affected (0.00 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> select * from employee_payroll;
-+----+-----------+-----------+------------+--------+
-| Id | Name      | Salary    | Start_Date | Gender |
-+----+-----------+-----------+------------+--------+
-|  1 | Preeti    | 45500.000 | 2021-04-12 | NULL   |
-|  2 | Sanjana   | 34000.000 | 2022-09-08 | NULL   |
-|  3 | Smriti    | 52300.000 | 2023-01-28 | NULL   |
-|  4 | Usha      | 68780.000 | 2022-06-27 | NULL   |
-|  5 | Ravikiran | 72000.000 | 2018-05-22 | M      |
-+----+-----------+-----------+------------+--------+
-5 rows in set (0.00 sec)
- select sum(Salary) from employee_payroll;
-+-------------+
-| sum(Salary) |
-+-------------+
-|  340080.000 |
-+-------------+
-1 row in set (0.00 sec)
-
-mysql> select Avg(Salary) from employee_payroll;
-+---------------+
-| Avg(Salary)   |
-+---------------+
-| 56680.0000000 |
-+---------------+
-1 row in set (0.00 sec)
-
-mysql> select min(Salary) from employee_payroll;
-+-------------+
-| min(Salary) |
-+-------------+
-|   34000.000 |
-+-------------+
-1 row in set (0.00 sec)
-
-mysql> select max(Salary) from employee_payroll;
-+-------------+
-| max(Salary) |
-+-------------+
-|   72000.000 |
-+-------------+
-1 row in set (0.00 sec)
-
-mysql> select Gender,COUNT(Salary) from employee_payroll group by Gender;
-+--------+---------------+
-| Gender | COUNT(Salary) |
-+--------+---------------+
-| F      |             4 |
-| M      |             2 |
-+--------+---------------+
-2 rows in set (0.00 sec)
-
-mysql> select sum(Salary) from employee_payroll where Gender = "F" group by Gender;
-+-------------+
-| sum(Salary) |
-+-------------+
-|  200580.000 |
-+-------------+
-1 row in set (0.00 sec)
-
-mysql> select sum(Salary) from employee_payroll where Gender = "M" group by Gender;
-+-------------+
-| sum(Salary) |
-+-------------+
-|  139500.000 |
-+-------------+
-1 row in set (0.00 sec)
-
- alter table employee_payroll add column Phone_Number long;
-Query OK, 0 rows affected (0.10 sec)
+mysql>  alter table employee_payroll add column Deductions long;
+Query OK, 0 rows affected (0.01 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> alter table employee_payroll add column Address varchar(50) default 'India';
+mysql>  alter table employee_payroll add column Taxable_Pay long;
 Query OK, 0 rows affected (0.02 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> alter table employee_payroll add column Department varchar(30) not null;
-Query OK, 0 rows affected (0.02 sec)
+mysql>  alter table employee_payroll add column Income_Tax long;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  alter table employee_payroll add column Net_Pay long;
+Query OK, 0 rows affected (0.01 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
 mysql> select * from employee_payroll;
-+----+-----------+------------+------------+--------+--------------+---------+------------+
-| Id | Name      | Salary     | Start_Date | Gender | Phone_Number | Address | Department |
-+----+-----------+------------+------------+--------+--------------+---------+------------+
-|  1 | Preeti    | 300000.000 | 2021-04-12 | F      | NULL         | India   |            |
-|  2 | Sanjana   |  34000.000 | 2022-09-08 | F      | NULL         | India   |            |
-|  3 | Smriti    |  52300.000 | 2023-01-28 | F      | NULL         | India   |            |
-|  4 | Usha      |  68780.000 | 2022-06-27 | F      | NULL         | India   |            |
-|  5 | Ravikiran |  72000.000 | 2018-05-22 | M      | NULL         | India   |            |
-|  6 | Kiran     |  67500.000 | 2019-11-12 | M      | NULL         | India   |            |
-+----+-----------+------------+------------+--------+--------------+---------+------------+
++----+-----------+------------+------------+--------+--------------+---------+------------+-----------+------------+-------------+------------+---------+
+| Id | Name      | Salary     | Start_Date | Gender | Phone_Number | Address | Department | Basic_Pay | Deductions | Taxable_Pay | Income_Tax | Net_Pay |
++----+-----------+------------+------------+--------+--------------+---------+------------+-----------+------------+-------------+------------+---------+
+|  1 | Preeti    | 300000.000 | 2021-04-12 | F      | NULL         | India   |            | NULL      | NULL       | NULL        | NULL       | NULL    |
+|  2 | Sanjana   |  34000.000 | 2022-09-08 | F      | NULL         | India   |            | NULL      | NULL       | NULL        | NULL       | NULL    |
+|  3 | Smriti    |  52300.000 | 2023-01-28 | F      | NULL         | India   |            | NULL      | NULL       | NULL        | NULL       | NULL    |
+|  4 | Usha      |  68780.000 | 2022-06-27 | F      | NULL         | India   |            | NULL      | NULL       | NULL        | NULL       | NULL    |
+|  5 | Ravikiran |  72000.000 | 2018-05-22 | M      | NULL         | India   |            | NULL      | NULL       | NULL        | NULL       | NULL    |
+|  6 | Kiran     |  67500.000 | 2019-11-12 | M      | NULL         | India   |            | NULL      | NULL       | NULL        | NULL       | NULL    |
++----+-----------+------------+------------+--------+--------------+---------+------------+-----------+------------+-------------+------------+---------+
 6 rows in set (0.00 sec)
